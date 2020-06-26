@@ -48,16 +48,18 @@ $$('.open-icon').on('click', function () {
     myApp.popover('.popover-icon', clickedLink);
 });
 
+$$('pac-item').on('click', function () {
+  console.log("****cick");
+});
+
 
 var ubicacion;
 var destino;
 function buscarTaxi(){
-    console.log("buscando...");
+
 
     ubicacion=$('#ubicacion').val();
     destino=$('#destino').val();
-    console.log("***"+ubicacion);
-    console.log("***"+destino);
     if(ubicacion=="" || destino==""){
         myApp.modal({
             title:  '¡Atención!',

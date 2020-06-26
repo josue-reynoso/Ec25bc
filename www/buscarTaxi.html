@@ -95,6 +95,7 @@
   var destlat=document.getElementById("txt_lat_des").value;
   var destlng=document.getElementById("txt_long_des").value;
    $( document ).ready(function() {
+    console.log(destlat+"***"+destlng);
         $('#ubicacion').val(ubicacion);
         $('#destino').val(destino);
 
@@ -142,10 +143,15 @@
              //alert("peticion"+peticion+"\nchofer "+chofer+"\nmatricula "+matricula+"\nestado "+estado);
 
              if (estado=="aceptada"){
+              setTimeout(function(){ 
+    
               document.getElementById("id_pet").value=peticion;
               document.getElementById("id_chof").value=chofer;
               document.getElementById("matricula_chof").value=matricula;
               $( "#contenido_pagina" ).load( "encamino.html");
+              
+              }, 2000);
+              
 
              }else{
               myApp.modal({
