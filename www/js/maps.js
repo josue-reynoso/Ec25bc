@@ -342,6 +342,8 @@ function GPS_disabled() {
 }
 
 function ruta(latitud, longitud) {
+    console.log(direccion_ubicacion);
+    console.log(direccion_destino);
     directionsService.route({
         origin: direccion_ubicacion,
         destination: direccion_destino,

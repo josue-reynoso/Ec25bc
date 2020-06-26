@@ -772,7 +772,7 @@ function login() {
 }
 
 function logout(){
-    console.log("********************************");
+    
     localStorage.user = "";
     localStorage.pass = "";
     window.localStorage.removeItem("id_cliente");
