@@ -73,6 +73,13 @@ include('../conexion.php');
 	    			    			$i=4;
 	    			    			$contador=15;
 	    			    		}
+								if ($fila['estado']=="terminadaC") {
+	    			    			$estado="cancelada";
+	    			    			$chofer=array($IDPETICION,$IDCHOFER,$MATRICULA,$estado);
+									echo json_encode($chofer);
+	    			    			$i=4;
+	    			    			$contador=15;
+	    			    		}
 	    			    		if ($fila['estado']=="aceptada") {
 	    			    			$estado="aceptada";
 	    			    			$chofer=array($IDPETICION,$IDCHOFER,$MATRICULA,$estado,$ABSU,$absCLIENTE);
