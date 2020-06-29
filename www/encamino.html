@@ -55,14 +55,14 @@
         <div class="item-title">Whatsapp</div>
       </div>
     </a>-->
-     <a href="#" class="item-link item-content">
+  <!--   <a href="#" class="item-link item-content">
       <div class="item-media"><img src="icon/instagram.png" width="25" height="25">
       </div>
       <div class="item-inner" id="last-item-inner">
         <div class="item-title">Instagram</div>
       </div>
     </a>
-  </div>
+  </div>-->
    
 </div>
 
@@ -72,7 +72,7 @@
   var estatusSolicitud_u=setInterval(estatusSolicitud, 5000);
   var idpet=document.getElementById("id_pet").value;
   var idchof=document.getElementById("id_chof").value;
-$( document ).ready(function() {
+	$( document ).ready(function() {
           $( "#menu" ).load( "menu.html" );
           var matricula=document.getElementById("matricula_chof").value;  
 
@@ -217,7 +217,7 @@ $( document ).ready(function() {
           cache: false,
           url:URL,
           data: 
-              "id_peticion="+idpet,
+              "id_peticion="+idpet+"&id_peticion=" + idpet,
                // Adjuntar los campos del formulario enviado.
           success: function (data)
           {
