@@ -69,6 +69,7 @@
  <script type="text/javascript" src="js/variables.js"></script>
 <script type="text/javascript">
   var ubicacion_u=setInterval(ubicacion_unidad, 5000);
+  var estatusSolicitud_u=setInterval(estatusSolicitud, 5000);
   var idpet=document.getElementById("id_pet").value;
   var idchof=document.getElementById("id_chof").value;
 $( document ).ready(function() {
@@ -147,8 +148,68 @@ $( document ).ready(function() {
              
       });
 
+	
+	 function estatusSolicitud(){
+        var URL=ruta+"/Clientes/consultaEstadoSolicitud.php";
+        //var URL="http://localhost/taxiapp/Clientes/consultaEstadoSolicitud.php";
+         $.ajax({
+        url: URL,
+        type: 'POST',
+        data: "id_peticion=" + idpet,
+        success: function (data, textStatus, jqXHR) {
+            if (data.trim() === "cancelada") {
+            	
+            } else if (data.trim() === "terminada") {
+				 myApp.alert('¡El cliente ha teminado servicio!', 'Servicio cancelado');
+				
+            } else if (data.trim() === "terminadaC") {
+				myApp.modal({
+            title:  'Cancelando servicio',
+            text: 'Tu servicio solicitado fue cancelado por el conductor',
+            buttons: [
+              {
+                text: 'Ok',
+                onClick: function() {
+                  clearInterval(ubicacion_u);
+                  ubicacion_u = undefined;
+                  var URL=ruta+"/Clientes/cancelarTaxi.php";
+                  //var URL="http://localhost/taxiapp/Clientes/cancelarTaxi.php";
+                  var idpet=document.getElementById("id_pet").value;
+                  $.ajax({
+                      type: "POST",
+                      dataType : 'text',
+                      cache: false,
+                      url:URL,
+                      data: 
+                      "id_peticion="+idpet,
+                       // Adjuntar los campos del formulario enviado.
+                    success: function (data)
+                    {
+                      console.log(data);                      
+                      $( "#contenido_pagina" ).load( "cancelado.html" );
+                      
+                    },
+                    error: function(e){
+                        alert('Error: '+e);
+                    }  
+                  });                  
+                }
+              }
+            ]
+          })
+			}
+        },
+        error: function (jqXHR, textStatus, errorThrown) {
+            console.log(textStatus);
+        }
+    });
+  }
+
+
+
   function ubicacion_unidad(){
         var URL=ruta+"/Clientes/seguirTaxi.php";
+		
         //var URL="http://localhost/taxiapp/Clientes/seguirTaxi.php";
         $.ajax({
           type: "POST",
@@ -156,7 +217,7 @@ $( document ).ready(function() {
           cache: false,
           url:URL,
           data: 
-              "id_chofer="+idchof+"&id_peticion="+idpet,
+              "id_peticion="+idpet,
                // Adjuntar los campos del formulario enviado.
           success: function (data)
           {
