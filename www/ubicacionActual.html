@@ -49,6 +49,10 @@
 <script type="text/javascript" src="js/maps.js"></script>
     <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&key=AIzaSyDjGHdi53xmyV8C4zP3vPBp-NVYZiAKJFk&libraries=places,geometry&callback=initMap" async defer></script>
     <script type="text/javascript">
+	$(".select_box").change(function() {
+    $(this).hide();
+    $(".select_box").show();
+});
       function n(){
         console.log($("#destino").val()); 
         console.log($("#pac-container").val());
