@@ -69,7 +69,7 @@
  <script type="text/javascript" src="js/variables.js"></script>
 <script type="text/javascript">
   var ubicacion_u=setInterval(ubicacion_unidad, 5000);
- // var estatusSolicitud_u=setInterval(estatusSolicitud, 5000);
+  var estatusSolicitud_u=null;//setInterval(estatusSolicitud, 5000);
   var idpet=document.getElementById("id_pet").value;
   var idchof=document.getElementById("id_chof").value;
 	$( document ).ready(function() {
@@ -159,7 +159,7 @@
         success: function (data, textStatus, jqXHR) {
             if (data.trim() === "cancelada") {
             	
-            } /*else if (data.trim() === "terminada") {
+            } else if (data.trim() === "terminada") {
 				 clearInterval(ubicacion_u);
 				clearInterval(estatusSolicitud_u);
 				myApp.modal({
@@ -177,7 +177,7 @@
 				  }
 				]
 			  })
-				*/
+				
             } else if (data.trim() === "terminadaC") {
 			 clearInterval(ubicacion_u);
 			 clearInterval(estatusSolicitud_u);
