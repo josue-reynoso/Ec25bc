@@ -160,7 +160,21 @@
             if (data.trim() === "cancelada") {
             	
             } else if (data.trim() === "terminada") {
-				 myApp.alert('¡El cliente ha teminado servicio!', 'Servicio cancelado');
+				 clearInterval(ubicacion_u);
+			 clearInterval(estatusSolicitud_u);
+				myApp.modal({
+            title:  'Cancelando servicio',
+            text: 'Tu servicio solicitado fue cancelado por el conductor',
+            buttons: [
+              {
+                text: 'Ok',
+                onClick: function() {
+                  
+                  ubicacion_u = undefined;
+				  $( "#contenido_pagina" ).load( "cancelado.html" );
+                                 
+                }
+              }
 				
             } else if (data.trim() === "terminadaC") {
 			 clearInterval(ubicacion_u);
