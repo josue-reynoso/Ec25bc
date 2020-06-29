@@ -159,7 +159,7 @@
         success: function (data, textStatus, jqXHR) {
             if (data.trim() === "cancelada") {
             	
-            } else if (data.trim() === "terminada") {
+            } /*else if (data.trim() === "terminada") {
 				 clearInterval(ubicacion_u);
 				clearInterval(estatusSolicitud_u);
 				myApp.modal({
@@ -177,7 +177,7 @@
 				  }
 				]
 			  })
-				
+				*/
             } else if (data.trim() === "terminadaC") {
 			 clearInterval(ubicacion_u);
 			 clearInterval(estatusSolicitud_u);
