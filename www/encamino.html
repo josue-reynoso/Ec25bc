@@ -163,6 +163,8 @@
 				 myApp.alert('¡El cliente ha teminado servicio!', 'Servicio cancelado');
 				
             } else if (data.trim() === "terminadaC") {
+			 clearInterval(ubicacion_u);
+			 clearInterval(estatusSolicitud_u);
 				myApp.modal({
             title:  'Cancelando servicio',
             text: 'Tu servicio solicitado fue cancelado por el conductor',
@@ -170,29 +172,10 @@
               {
                 text: 'Ok',
                 onClick: function() {
-                  clearInterval(ubicacion_u);
+                  
                   ubicacion_u = undefined;
-                  var URL=ruta+"/Clientes/cancelarTaxi.php";
-                  //var URL="http://localhost/taxiapp/Clientes/cancelarTaxi.php";
-                  var idpet=document.getElementById("id_pet").value;
-                  $.ajax({
-                      type: "POST",
-                      dataType : 'text',
-                      cache: false,
-                      url:URL,
-                      data: 
-                      "id_peticion="+idpet,
-                       // Adjuntar los campos del formulario enviado.
-                    success: function (data)
-                    {
-                      console.log(data);                      
-                      $( "#contenido_pagina" ).load( "cancelado.html" );
-                      
-                    },
-                    error: function(e){
-                        alert('Error: '+e);
-                    }  
-                  });                  
+				  $( "#contenido_pagina" ).load( "cancelado.html" );
+                                 
                 }
               }
             ]
