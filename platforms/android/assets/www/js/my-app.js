@@ -841,3 +841,5 @@ function califica_taxista() {
     });
     
 }
+
+var destinoFinal;

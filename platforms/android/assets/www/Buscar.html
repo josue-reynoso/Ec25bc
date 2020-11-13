@@ -1,16 +1,90 @@
 <script type="text/javascript" src="js/maps.js"></script>
-    <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&key=AIzaSyDjGHdi53xmyV8C4zP3vPBp-NVYZiAKJFk&libraries=places,geometry&callback=initMap" async defer></script>
-
     
+
+    <style type="text/css">
+  .pac-container{
+    z-index: 99999;
+    position: absolute !important;
+
+  }
+  .pac-item{
+    height: 70px !important;
+    font-size: 16px !important;
+  }
+</style>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script>
       function init() {
-    console.log("iniciando");
       var input = document.getElementById('destino');
       
       var autocomplete = new google.maps.places.Autocomplete(input);
+      autocomplete.bindTo('bounds', map);
+
+      autocomplete.setFields(
+            ['address_components', 'geometry', 'icon', 'name']);var infowindow = new google.maps.InfoWindow();
+        var infowindowContent = document.getElementById('infowindow-content');
+        infowindow.setContent(infowindowContent);
+        var marker = new google.maps.Marker({
+          map: map,
+          anchorPoint: new google.maps.Point(0, -29)
+        });
+
+
 
    }
+   function codeAddress() {
+  if (markersArray[1]) {
+        markersArray[1].setMap(null);
+        markersArray.splice(-1, 1);
+
+    }
+    var address = document.getElementById('destino').value;
+    var loc=[];
+    geocoder.geocode( { 'address': address}, function(results, status) {
+      if (status == 'OK') {
+        
+        loc[0]=results[0].geometry.location.lat();
+        loc[1]=results[0].geometry.location.lng();
+        direccion_destino = address;
+        ruta(loc[0], loc[1])
+        map.setCenter(results[0].geometry.location);
+        var icon = {
+        url: "icon/destino.png",
+        scaledSize: new google.maps.Size(40, 40),
+        labelOrigin: new google.maps.Point(20, 15)
+    };
+    var destino = new google.maps.Marker({
+
+        position: results[0].geometry.location,
+        map: map,
+        icon: icon,
+        label: {
+            text: 'B',
+            fontWeight: 'bold',
+        },
+        draggable: true
+    });
+    destino.setMap(map);
+    setDestino(destino);
+    markersArray.push(destino);
+    google.maps.event.addListener(destino, 'dragend', function () {
+        setDestino(destino);
+    });
+
+      } else {
+        alert('No su pudo encontrar la direccion: ' + status);
+      }
+    });
+  }
+
+  $("pac-container").click(function(){
+    console.log("hola");
+  codeAddress();
+});
+
+  $( "#pac-item" ).select(function() {
+  console.log("Selecciono")
+});
 
    setTimeout(function(){ 
     
@@ -18,28 +92,16 @@
     init();
     }, 1000);
 
+function reDire(){
+  setTimeout(function(){ 
+    console.log(document.getElementById('destino').value)
+    }, 1000);
+  return;
+  var input = document.getElementById('destino');
+  destinoFinal = input;
+  $( "#contenido_pagina" ).load( "ubicacionActual.html");
+}
 
 </script>
-<style type="text/css">
-  .mi{
-    box-sizing: border-box;
-    border: none;
-    background: 0 0;
-    border-radius: 0;
-    box-shadow: none;
-    display: block;
-    padding: 0;
-    margin: 0;
-    width: 100%;    
-    color: #000;
-    font-size: 17px;
-    font-family: inherit;
-  }
 
-  body{
-    margin: 0px;
-    height: 56px;
-    line-height: none;
-  }
-</style>
-    <input type="text" id="destino" style="height: 43px" value="" class="mi" name="destino"  size="50">  
+    <input type="text" id="destino" onchange="reDire()" autocomplete="on" style="height: 43px;width: 99% !important" value="" class="mi" name="destino"  size="50">  
