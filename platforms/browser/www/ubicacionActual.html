@@ -52,12 +52,20 @@
 
 
 <script type="text/javascript" src="js/maps.js"></script>
-    <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&key=AIzaSyDjGHdi53xmyV8C4zP3vPBp-NVYZiAKJFk&libraries=places,geometry&callback=initMap" async defer></script>
+    <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&key=AIzaSyD_L1HLSpyfrrkhSiJ3_o4PKgc-TFCFzAI&libraries=places,geometry&callback=initMap&region=in" async defer></script>
+
+
+"></script>
     <script type="text/javascript">
+
 	$(".select_box").change(function() {
     $(this).hide();
     $(".select_box").show();
+
+
 });
+
+  $(document).on({ 'DOMNodeInserted': function() { $('.pac-item, .pac-item span', this).addClass('no-fastclick'); } }, '.pac-container');
       
       /* function init() {
       var input = document.getElementById('destino');
