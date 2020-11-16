@@ -235,6 +235,7 @@ function calcular_costo_viaje(){
         //data: "id_peticion=1",
         data: "id_peticion="+idpet,
         success: function (data) {
+          console.log("*******///////******"+ idpet);
             console.log(data);
             var ubicacion=data[0];
             var destino=data[1];
@@ -243,13 +244,20 @@ function calcular_costo_viaje(){
             var hr_llegada=data[4];
             var costo=data[5];
 
-            document.getElementById("detalle_ubicacion").textContent=ubicacion;
+            /*document.getElementById("detalle_ubicacion").textContent=ubicacion;
             document.getElementById("detalle_destino").textContent=destino;
             document.getElementById("detalle_fecha").textContent=fecha;
             document.getElementById("detalle_hrSalida").textContent=hr_salida;
             document.getElementById("detalle_hrLlegada").textContent=hr_llegada;
             document.getElementById("detalle_costo").textContent="$"+costo;
-            document.getElementById("detalle_costo").value=costo;
+            document.getElementById("detalle_costo").value=costo;*/
+            $("#detalle_ubicacion").val(ubicacion);
+            $("#detalle_destino").val(destino);
+            $("#detalle_fecha").val(fecha);
+            $("#detalle_hrSalida").val(hr_salida);
+            $("#detalle_hrLlegada").val(hr_llegada);
+            $("#detalle_costo").val("$"+costo);
+
         },
         error: function (e) {
             console.log('Error: ' + e+ idpet);

@@ -1,0 +1,66 @@
+
+    
+
+    <style type="text/css">
+  .pac-container{
+    z-index: 99999;
+    position: absolute !important;
+
+
+  }
+  .pac-item{
+    height: 70px !important;
+    font-size: 16px !important;
+  }
+</style>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    <script>
+      
+        
+      
+      function init() {
+      var input = document.getElementById('destino');
+      var options = {
+        types: ['19.70078,-101.18443'] //this should work !
+      };
+      var autocomplete = new google.maps.places.Autocomplete(input);
+      autocomplete.bindTo('bounds', map);
+
+      autocomplete.setFields(
+            ['address_components', 'geometry', 'icon', 'name']);var infowindow = new google.maps.InfoWindow();
+        var infowindowContent = document.getElementById('infowindow-content');
+        infowindow.setContent(infowindowContent);
+        var marker = new google.maps.Marker({
+          map: map,
+          anchorPoint: new google.maps.Point(0, -29)
+        });
+
+
+
+   }
+
+
+   setTimeout(function(){ 
+    //document.getElementById('pac-container').setAttribute('data-tap-disabled', 'true')
+
+    google.maps.event.addDomListener(window, 'load', init);
+    init();
+    }, 500);
+
+
+
+function reDire(){
+  
+    //console.log(document.getElementById('destino').value)
+    //console.log($("#pac-container").val()+ "****////")
+  
+  var input = document.getElementById('destino');
+  destinoFinal = input;
+  $( "#contenido_pagina" ).load( "ubicacionActual.html");
+}
+
+
+</script>
+<div class="content-block-title">DESTINO</div>
+    <input type="text" id="destino" onchange="reDire()" autocomplete="on" style="height: 43px;width: 99% !important" value="" class="mi" name="destino"  size="50" autofocus>  
