@@ -121,6 +121,8 @@ function codeAddress() {
         
         loc[0]=results[0].geometry.location.lat();
         loc[1]=results[0].geometry.location.lng();
+        $("#txt_lat_des").val(loc[0])
+        $("#txt_long_des").val(loc[1])
         direccion_destino = address;
         ruta(loc[0], loc[1])
         map.setCenter(results[0].geometry.location);

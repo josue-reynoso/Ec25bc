@@ -231,7 +231,7 @@ function calcular_costo_viaje(){
         dataType: 'json',
         cache: false,
         //url: "http://localhost/taxiapp/Clientes/costoTraslado.php",
-        url: "http://bcodemexico.com/taxiApp/Clientes/costoTraslado.php",
+        url: ruta+"/Clientes/costoTraslado.php",
         //data: "id_peticion=1",
         data: "id_peticion="+idpet,
         success: function (data) {
